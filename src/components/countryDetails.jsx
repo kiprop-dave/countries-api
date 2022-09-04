@@ -23,14 +23,14 @@ export default function CountryDetails(){
         languages,
         tld} = countryDetail
 
-    
+    console.log(currencies)
     
     function getNativeName(obj){
         const firstProp = obj[Object.keys(obj)[0]];
         return firstProp?.common 
     }
 
-    function getCurrncy(obj){
+    function getCurrency(obj){
         const firstProp = obj[Object.keys(obj)[0]];
         return firstProp?.name 
     }
@@ -42,7 +42,7 @@ export default function CountryDetails(){
         })
     }
     const  getBorders = () =>{
-        if(borders.length){
+        if(borders !== undefined){
             const borderCountries = borders?.map(bord =>{
                 const borderCountry = dataCopy?.find(item => (item.cioc === bord || item.fifa == bord || item.cca3 == bord))
                 return borderCountry
@@ -72,7 +72,7 @@ export default function CountryDetails(){
             <span key={index} className ="test"> {thisLanguage},</span>
         )
     })
-    const currency = getCurrncy(currencies)
+    const currency = getCurrency(currencies)
     const nativeName = (getNativeName(name.nativeName))
     
     return(

@@ -62,14 +62,14 @@
 }
 
 /* Medium devices */
-@media (min-width: 481px) and (max-width: 767px){
+/* @media (min-width: 481px) and (max-width: 767px){
     .search-container{
         margin: 8rem 2rem 1rem 2rem;
     }
-}
+} */
 
 /* small devices */
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 600px) {
     .search-container{
         display: flex;
         flex-direction: column;
@@ -80,6 +80,6 @@
     }
     .filter--search{
         width: 100%;
-        margin-top: 1rem;
+        margin: 1rem 2rem 1rem 2rem;
     }
 }
