@@ -1,0 +1,85 @@
+@import url(../App.css);
+
+.search-container{
+    margin: 8rem 5rem 1rem 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+}
+
+.text-search{
+    height: 4rem;
+    box-shadow: var(--box-shadow);
+    width: 40%;
+    border-radius: var(--br);
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+}
+.input{
+    height: 2rem;
+    margin-left: 2rem;
+    width: 100%;
+    font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    border: none;
+}
+.input:focus{
+    outline: none;
+}
+
+
+.filter--search{
+    width: 30%;
+    height: 4rem;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--br);
+    display: flex;
+    align-items: center;
+}
+
+.filter-label{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.select{
+    height: 2rem;
+    font-size: 16px;
+    width: 100%;
+    font-family: 'Quicksand', sans-serif;
+    border: none;
+    border-radius: 10px;
+    
+}
+.select:focus{
+    outline: none;
+}
+.select-wrapper{
+    height: 5cm;
+    z-index: 2;
+}
+
+/* Medium devices */
+@media (min-width: 481px) and (max-width: 767px){
+    .search-container{
+        margin: 8rem 2rem 1rem 2rem;
+    }
+}
+
+/* small devices */
+@media screen and (max-width: 480px) {
+    .search-container{
+        display: flex;
+        flex-direction: column;
+        margin: 8rem 2rem 1rem 2rem;
+    }
+    .text-search{
+        width: 100%;
+    }
+    .filter--search{
+        width: 100%;
+        margin-top: 1rem;
+    }
+}

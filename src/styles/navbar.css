@@ -1,0 +1,64 @@
+@import url(../App.css);
+
+.navbar{
+    height: 6rem;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    box-shadow: var(--box-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+
+
+.navbar > h2{
+    margin-left: 6rem;
+}
+
+.navbar--toggle{
+    width: auto;
+    height: 3.5rem;
+    border-radius: 15px;
+    margin-right: 10rem;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    cursor: pointer;
+    justify-content: space-between;
+}
+
+.toggle-right{
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    background-color:white;
+}
+
+.toggle--light{
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    background-image: url(../assets/icons/light-mode.png);  
+}
+
+.toggle--dark{
+    height: 1.3rem;
+    width: 1.3rem;
+    border-radius: 50%;
+    background-image: url(../assets/icons/dark-mode.png);
+}
+
+
+
+/* Small devices */
+@media screen and (max-width: 600px) {
+    .navbar > h2{
+        margin-left: 1%;
+    }
+    .navbar--toggle{
+        margin-right: 1%;
+    }
+}
