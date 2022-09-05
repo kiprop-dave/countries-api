@@ -23,7 +23,7 @@ export default function CountryDetails(){
         languages,
         tld} = countryDetail
 
-    console.log(currencies)
+    // console.log(countryDetail)
     
     function getNativeName(obj){
         const firstProp = obj[Object.keys(obj)[0]];
@@ -87,7 +87,7 @@ export default function CountryDetails(){
                 <span>Back</span>
             </Link>
             <div className={`countrydetails-container`}>
-                <img src={flags.png} alt="" />
+                <img src={flags.png} alt=""className="details-flag" />
                 <div className={`countrydetails-stats`}>
                     <div className="stats-column1">
                         <h1>{name?.common}</h1>

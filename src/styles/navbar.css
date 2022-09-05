@@ -61,4 +61,10 @@
     .navbar--toggle{
         margin-right: 4%;
     }
+    .toggle--light{
+        margin-right: 10px;
+    }
+    .toggle--dark{
+        margin-right: 10px;
+    }
 }
