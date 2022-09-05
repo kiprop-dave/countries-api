@@ -46,7 +46,7 @@
 <h3 id="site">Live Site</h3>
 <p>
     The site is deployed using github pages
-    <a href ="http://tanuikiprop.me/countries-api/">here</a> 
+    <a href ="https://kiprop-dave.github.io/countries-api/">here</a> 
 </p>
 <h2 id="process">My Process</h2>
 <h3 id="tools">Tools used 🔧</h3>

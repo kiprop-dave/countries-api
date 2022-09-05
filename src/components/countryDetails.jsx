@@ -67,13 +67,46 @@ export default function CountryDetails(){
         }
     } 
 
-    const languageElements = getLanguages(languages)?.map((thisLanguage,index) =>{
-        return(
-            <span key={index} className ="test"> {thisLanguage},</span>
-        )
-    })
-    const currency = getCurrency(currencies)
-    const nativeName = (getNativeName(name.nativeName))
+    // const languageElements = getLanguages(languages)?.map((thisLanguage,index) =>{
+    //     return(
+    //         <span key={index} className ="test"> {thisLanguage},</span>
+    //     )
+    // })
+    const languageElements =() =>{
+        if(languages !==undefined){
+            return getLanguages(languages)?.map((thisLanguage,index) =>{
+                return(
+                    <span key={index} className ="test">{thisLanguage},</span>
+                )
+            })
+        }else{
+            return ""
+        }
+    }
+    // const currency = getCurrency(currencies)
+    const currency =() =>{
+        if(currencies !== undefined){
+            return getCurrency(currencies)
+        }else{
+            return ""
+        }
+    }
+    // const nativeName = (getNativeName(name.nativeName))
+    const nativeName =() =>{
+        if(name.nativeName !== undefined){
+            return getNativeName(name.nativeName)
+        }else{
+            return ""
+        }
+    }
+
+    const capitalCity =() =>{
+        if(capital !==undefined && capital.length > 0){
+            return capital[0]
+        }else{
+            return ""
+        }
+    }
     
     return(
         <div className={`countrydetails-page`}>
@@ -93,7 +126,7 @@ export default function CountryDetails(){
                         <h1>{name?.common}</h1>
                         <h4>
                             Native Name: 
-                            <span className="test"> {nativeName}</span> <br />
+                            <span className="test"> {nativeName()}</span> <br />
                             Population: 
                             <span className="test"> {population}</span> <br />
                             Region:
@@ -101,7 +134,7 @@ export default function CountryDetails(){
                             Subregion:
                             <span className="test"> {subregion}</span> <br />
                             Capital:
-                            <span className="test"> {capital[0]}</span> <br />
+                            <span className="test"> {capitalCity()}</span> <br />
                         </h4>
                     </div>
                     <div className="stats-column2">
@@ -109,9 +142,9 @@ export default function CountryDetails(){
                             Top Level Domain:
                             <span className="test"> {tld[0]}</span> <br />
                             Currency:
-                            <span className="test"> {currency}</span> <br />
+                            <span className="test"> {currency()}</span> <br />
                             Languages:
-                            {languageElements}
+                            {languageElements()}
                         </h4>
                     </div>
                     <div className="stats-column3">
