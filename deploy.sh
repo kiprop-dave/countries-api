@@ -16,7 +16,7 @@ set -e
 # git init
 # git remote add origin https://github.com/kiprop-dave/countries-api.git
 git add -A
-git commit -m 'favicon'
+git commit -m 'readme final'
 # git branch -M production
 git push -u origin development
 
