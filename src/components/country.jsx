@@ -11,7 +11,6 @@ function Country({country}){
         continents,
         capital
     } = country
-    //console.log(population)
 
     return(
         <Link to={`/countries-api/${name?.common}`} 

@@ -16,7 +16,7 @@ set -e
 # git init
 # git remote add origin https://github.com/kiprop-dave/countries-api.git
 git add -A
-git commit -m 'fixed country bug'
+git commit -m 'readme update'
 # git branch -M production
 git push -u origin development
 

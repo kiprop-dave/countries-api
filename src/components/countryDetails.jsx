@@ -7,7 +7,7 @@ import darkIcon from "../assets/icons/back-dark.png"
 import testData from "../country"
 
 export default function CountryDetails(){
-    const {isLightMode, lightOrDark, apiData, dataCopy} = useContext(Context)
+    const {isLightMode, lightOrDark, dataCopy} = useContext(Context)
 
     const {country: countryName} = useParams()
     
@@ -23,7 +23,7 @@ export default function CountryDetails(){
         languages,
         tld} = countryDetail
 
-    // console.log(countryDetail)
+    
     
     function getNativeName(obj){
         const firstProp = obj[Object.keys(obj)[0]];
@@ -67,11 +67,6 @@ export default function CountryDetails(){
         }
     } 
 
-    // const languageElements = getLanguages(languages)?.map((thisLanguage,index) =>{
-    //     return(
-    //         <span key={index} className ="test"> {thisLanguage},</span>
-    //     )
-    // })
     const languageElements =() =>{
         if(languages !==undefined){
             return getLanguages(languages)?.map((thisLanguage,index) =>{
@@ -83,7 +78,7 @@ export default function CountryDetails(){
             return ""
         }
     }
-    // const currency = getCurrency(currencies)
+    
     const currency =() =>{
         if(currencies !== undefined){
             return getCurrency(currencies)
@@ -91,7 +86,7 @@ export default function CountryDetails(){
             return ""
         }
     }
-    // const nativeName = (getNativeName(name.nativeName))
+    
     const nativeName =() =>{
         if(name.nativeName !== undefined){
             return getNativeName(name.nativeName)

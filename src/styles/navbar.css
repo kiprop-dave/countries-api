@@ -50,6 +50,12 @@
     border-radius: 50%;
     background-image: url(../assets/icons/dark-mode.png);
 }
+.toggle--light{
+    margin-right: 10px;
+}
+.toggle--dark{
+    margin-right: 10px;
+}
 
 
 
@@ -67,4 +73,5 @@
     .toggle--dark{
         margin-right: 10px;
     }
+    
 }
