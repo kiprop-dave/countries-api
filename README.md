@@ -63,11 +63,21 @@
 1. Using React Router for rendering different pages came with a problem I am yet to fix. Refreshing the country details page breaks the app.
 2. Some countries come with insufficient data that it breaks the app. For instance trying to see the details of <code>Macau </code>broke the App at first. I fixed it by making the code more imperative. For instance, when getting the native name, I used this at first,which didn't work on countries without a native name.
 
-   `const nativeName = (getNativeName(name.nativeName))`
+   ```js
+   const nativeName = getNativeName(name.nativeName);
+   ```
 
    By using a more imperative approach, I managed to fix the bug.
 
-   `const nativeName =() =>{ if(name.nativeName !== undefined){ return getNativeName(name.nativeName) }else{ return "" } }`
+   ```js
+   const nativeName = () => {
+     if (name.nativeName !== undefined) {
+       return getNativeName(name.nativeName);
+     } else {
+       return "";
+     }
+   };
+   ```
 
 <h3 id="resources">Useful Resources</h3>
 <ul>

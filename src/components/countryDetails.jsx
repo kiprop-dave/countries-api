@@ -21,9 +21,16 @@ export default function CountryDetails(){
         borders,
         currencies,
         languages,
-        tld} = countryDetail
+        tld
+    } = countryDetail
 
-    
+    const topDomain =() =>{
+        if(tld !== undefined){
+            return tld[0];
+        }else{
+            return '';
+        }
+    }
     
     function getNativeName(obj){
         const firstProp = obj[Object.keys(obj)[0]];
@@ -135,7 +142,7 @@ export default function CountryDetails(){
                     <div className="stats-column2">
                         <h4>
                             Top Level Domain:
-                            <span className="test"> {tld[0]}</span> <br />
+                            <span className="test"> {topDomain()}</span> <br />
                             Currency:
                             <span className="test"> {currency()}</span> <br />
                             Languages:
