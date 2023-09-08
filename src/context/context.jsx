@@ -1,101 +1,86 @@
-import React ,{ useState } from "react";
-import { useEffect } from "react";
-
-
-const Context = React.createContext()
+import React, { useMemo, useState, useContext, useEffect } from "react";
 import axios from "axios";
+import useDebounce from "../hooks/useDebounce";
+const Context = React.createContext()
 
-let isFirst = true
+function ContextProvider(props) {
 
-function ContextProvider(props){
+  const [apiData, setApiData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [isLightMode, setIsLightMode] = useState(false)
+  const [searchParam, setSearchParam] = useState("")
+  const [filterParam, setFilterParam] = useState("All")
+  const debouncedSearchTerm = useDebounce(searchParam);
 
-    const [apiData, setApiData] = useState([])
-    const [dataCopy, setDataCopy] = useState([])
-    const [isLightMode, setIsLightMode] = useState(false)
-    const [searchParam, setSearchParam] = useState("")
-    const [filterParam, setFilterParam] = useState("")
+  //This is a function to toggle between light and dark mode
+  function handleToggle() {
+    setIsLightMode(prev => !prev)
+  }
 
-    //This is a function to toggle between light and dark mode
-    function handleToggle(){
-        setIsLightMode(prev => !prev)
-    }
-
-    const lightOrDark = isLightMode ? "light" : "dark"
-
-    function handleSearch(event){
-        const {value} = event.target
-        // const cap = value.charAt(0).toUpperCase() + value.slice(0)
-        setSearchParam(value)
-    }
-    
-    function handleFilter(event){
-        const {value} = event.target
-        setFilterParam(value)
-    }
-
-    const url = "https://restcountries.com/v3.1/all"
-    useEffect(() =>{
-        axios.get(url).then((response) => {
-            setApiData(response.data);
-            setDataCopy(response.data)
-          });
-    },[])
-
-    useEffect(() => {
-        if(isFirst){
-          isFirst = false
-          return
-        }
-  
-      //your code that you don't want to execute at first render
-      if(searchParam.length){
-        const cap = searchParam.charAt(0).toUpperCase() + searchParam.slice(1).toLocaleLowerCase()
-        const searchResults = dataCopy?.filter(item => item.name.common.slice(0,cap.length) === cap)
-            // const {common} = item.name
-            // const searchLength = capitalized.length
-            // const match = common.slice(0, searchLength - 1)
-            // return item.name.common.slice(0, searchLength-1) === capitalized
-        // })
-        setApiData(searchResults)
-      }else{
-        setApiData(dataCopy)
+  const countries = useMemo(() => {
+    return apiData.filter((country) => {
+      const belongsToRegion = filterParam === "All" || country.region === filterParam;
+      const includesSearch = debouncedSearchTerm.length > 0 ? country.name.common.toLocaleLowerCase().includes(debouncedSearchTerm.toLocaleLowerCase()) : true;
+      if (belongsToRegion && includesSearch) {
+        return true;
       }
-    },[searchParam])
+      return false;
+    })
+  }, [searchParam, filterParam, apiData])
 
-    useEffect(() =>{
-        if(isFirst){
-            isFirst = false
-            return
-        }
-        if(filterParam.length){
-            if(filterParam === "All"){
-                setApiData(dataCopy)
-            }else{
-                const searchResults = dataCopy.filter(item => item.region === filterParam)
-                setApiData(searchResults)
-            }
-        }
-    },[filterParam])
+  const lightOrDark = useMemo(() => {
+    return isLightMode ? "light" : "dark"
+  }, [isLightMode])
 
-    return(
-        <Context.Provider value={
-            {
-                apiData,
-                isLightMode,
-                handleToggle,
-                lightOrDark,
-                handleSearch,
-                searchParam,
-                filterParam,
-                handleFilter,
-                dataCopy
-            }}>
-            {props.children}
-        </Context.Provider>
-    )
+  function handleSearch(event) {
+    const { value } = event.target
+    setSearchParam(value)
+  }
+
+  function handleFilter(event) {
+    const { value } = event.target
+    setFilterParam(value)
+  }
+
+  const url = "https://restcountries.com/v3.1/all"
+  useEffect(() => {
+    setLoading(true)
+    axios.get(url).then((response) => {
+      setApiData(response.data);
+    }).finally(() => {
+      setLoading(false)
+    });
+  }, [])
+
+  const values = {
+    apiData,
+    isLightMode,
+    handleToggle,
+    lightOrDark,
+    handleSearch,
+    searchParam,
+    filterParam,
+    handleFilter,
+    countries,
+    loading
+  }
+
+  return (
+    <Context.Provider value={values}>
+      {props.children}
+    </Context.Provider>
+  )
 }
 
-export {ContextProvider, Context}
+const useGlobalContext = () => {
+  const context = useContext(Context)
+  if (!context) {
+    throw new Error("useGlobalContext must be used within a ContextProvider")
+  }
+  return context
+}
+
+export { ContextProvider, useGlobalContext }
 
 
 
